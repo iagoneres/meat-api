@@ -29,10 +29,9 @@ class UsersRouter extends router_1.Router {
             });
         });
         application.put('/users/:id', (req, resp, next) => {
-            const options = { overwrite: true };
-            console.log(users_model_1.User);
+            const options = { new: true };
             users_model_1.User.updateOne({ _id: req.params.id }, req.body, options).exec()
-                .then((result) => {
+                .then(result => {
                 if (result.n) {
                     return users_model_1.User.findById(req.params.id);
                 }
